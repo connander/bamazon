@@ -79,5 +79,4 @@ inquirer.prompt([
     }
 });
 });
-};
-
+}
