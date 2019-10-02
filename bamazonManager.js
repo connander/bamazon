@@ -95,6 +95,7 @@ inquirer.prompt([
 ])
 .then(function(answer) {
     var chosenItem;
+    console.log(updateNumber);
     for(var i = 0; i < results.length; i++) {
         if (results[i].product_name === answer.product) {
             chosenItem = results[i];
@@ -105,7 +106,7 @@ inquirer.prompt([
             stock_quantity: chosenItem.stock_quantity + parseInt(answer.number)
         },
         {
-            itemID: chosenItem.id
+            itemID: chosenItem.itemID
         }
     ], function (err) {
         if (err)  throw err;
@@ -150,7 +151,6 @@ inquirer.prompt([
     }
 ])
 .then(function(answer) {
-
     connection.query("UPDATE products SET ? WHERE ?", [
         {
             product_name: answer.addProduct,
@@ -161,7 +161,8 @@ inquirer.prompt([
         {
             itemID: answer.id
         }
-    ], function (err) {
+    ],
+     function (err) {
         if (err)  throw err;
         console.log("Product Added.\n\n");
         start();

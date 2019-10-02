@@ -51,19 +51,22 @@ inquirer.prompt([
 ])
 .then(function(answer) {
     var chosenItem;
+    
     for(var i = 0; i < results.length; i++) {
         if(results[i].product_name === answer.productChoice) {
             chosenItem = results[i];
         }
     }
+    var updatedStock = parseInt(chosenItem.stock_quantity) - parseInt(answer.number);
 
     if (chosenItem.stock_quantity > parseInt(answer.number)) {
-        connection.query("UPDATE products SET ? WHERE ?", [
+        connection.query("UPDATE products SET ? WHERE ?", 
+        [
             {
-                stock_quantity: chosenItem.stock_quantity - parseInt(answer.number)
+                stock_quantity: updatedStock
             },
             {
-                itemID: chosenItem.id
+                itemID: chosenItem.itemID
             }
         ],
         function(err) {
@@ -71,7 +74,7 @@ inquirer.prompt([
             console.log("Product purchesed successfully.\n");
             console.log("Total: " + "$" + (chosenItem.price * parseInt(answer.number))+"\n");
             start();
-        })
+        });
     }
     else {
         console.log("Insufficient Stock.\n")
