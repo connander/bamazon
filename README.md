@@ -10,7 +10,7 @@ There are 3 separate files in this app, they are as follows:
 
 2. bamazonCustomer.js - This file is what the customer uses when they access the app. It shows them what products are in stock, with how many of each, and the price of every items.
 
-3. bamazonManager.js - The last file contains all the logic for what managers will use. This file allows them to look at the stock, view what is currently low and order more stock, it also allows them to enter in new items into the database(This final functionality is currently not working).
+3. bamazonManager.js - The last file contains all the logic for what managers will use. This file allows them to look at the stock, view what is currently low and order more stock, it also allows them to enter in new items into the database.
 
 ## Operation
 
