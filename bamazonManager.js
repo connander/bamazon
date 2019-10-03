@@ -116,9 +116,6 @@ inquirer.prompt([
     });
 }
 
-//The addProduct function needs to utilize a INSERT INTO query instead of a SELECT query, I was unable to get the syntax for INSERT INTO just right
-//So this function does not work at the moment
-
 function addProduct() {
     connection.query("SELECT * FROM products", function(err, results) {
         if (err) throw err;
@@ -153,16 +150,13 @@ inquirer.prompt([
     }
 ])
 .then(function(answer) {
-    connection.query("UPDATE products SET ? WHERE ?", [
+    connection.query("INSERT INTO products SET ?", [
         {
             product_name: answer.addProduct,
             stock_quantity: answer.number,
             price: answer.price,
             department_name: answer.department,
         },
-        {
-            itemID: answer.id
-        }
     ],
      function (err) {
         if (err)  throw err;
