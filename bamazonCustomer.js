@@ -59,7 +59,7 @@ inquirer.prompt([
     }
     var updatedStock = parseInt(chosenItem.stock_quantity) - parseInt(answer.number);
 
-    if (chosenItem.stock_quantity > parseInt(answer.number)) {
+    if (chosenItem.stock_quantity >= parseInt(answer.number)) {
         connection.query("UPDATE products SET ? WHERE ?", 
         [
             {
@@ -74,11 +74,13 @@ inquirer.prompt([
             console.log("Product purchesed successfully.\n");
             console.log("Total: " + "$" + (chosenItem.price * parseInt(answer.number))+"\n");
             start();
+            run();
         });
     }
     else {
         console.log("Insufficient Stock.\n")
         start();
+        run();
     }
 });
 });

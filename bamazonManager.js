@@ -95,7 +95,6 @@ inquirer.prompt([
 ])
 .then(function(answer) {
     var chosenItem;
-    console.log(updateNumber);
     for(var i = 0; i < results.length; i++) {
         if (results[i].product_name === answer.product) {
             chosenItem = results[i];
@@ -116,6 +115,9 @@ inquirer.prompt([
 })
     });
 }
+
+//The addProduct function needs to utilize a INSERT INTO query instead of a SELECT query, I was unable to get the syntax for INSERT INTO just right
+//So this function does not work at the moment
 
 function addProduct() {
     connection.query("SELECT * FROM products", function(err, results) {
